@@ -12,13 +12,14 @@ Requirements
 * libtool
 * openssl (optional)
 
-Compilation
------------
+Installation
+------------
 
 ```
 autoreconf --install
 ./configure
 make
+make install
 ```
 
 Contact

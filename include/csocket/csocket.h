@@ -14,18 +14,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef __SSL_SOCKET_H__
-#define __SSL_SOCKET_H__
+#ifndef __CSOCKET_H__
+#define __CSOCKET_H__
 
-#include <openssl/ssl.h>
 #include "socket.h"
+#include "ssl_socket.h"
 
-struct ssl_socket {
-    struct socket sock;
-    SSL_CTX *ctx;
-    SSL *ssl;
-};
-
-extern const struct socket_ops ssl_socket_ops;
-
-#endif /* __SSL_SOCKET_H__ */
+#endif /* __CSOCKET_H__ */

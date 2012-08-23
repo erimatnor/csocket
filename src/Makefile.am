@@ -10,6 +10,7 @@ endif
 libcsocket_la_CPPFLAGS = -I$(top_srcdir)/include
 libcsocket_la_includedir = $(includedir)/csocket
 libcsocket_la_include_HEADERS = \
+	$(top_srcdir)/include/csocket/csocket.h \
 	$(top_srcdir)/include/csocket/socket.h \
 	$(top_srcdir)/include/csocket/ssl_socket.h
 
