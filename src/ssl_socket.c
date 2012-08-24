@@ -15,6 +15,13 @@
  * limitations under the License.
  */
 #include <csocket/ssl_socket.h>
+#include "socket_internal.h"
+
+struct ssl_socket {
+    struct socket sock;
+    SSL_CTX *ctx;
+    SSL *ssl;
+};
 
 #define ssl_sock(sock) ((struct ssl_socket *)sock)
 

@@ -14,14 +14,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef __SSL_SOCKET_H__
-#define __SSL_SOCKET_H__
+#include "config.h"
 
-#include <openssl/ssl.h>
-#include "socket.h"
+extern int socket_lib_init(void);
+extern void socket_lib_fini(void);
+#if defined(HAVE_OPENSSL)
+extern int ssl_socket_lib_init(void);
+extern void ssl_socket_lib_fini(void);
+#endif
 
-struct ssl_socket;
+int csocket_lib_init(void)
+{
+    int ret = 0;
 
-extern const struct socket_ops ssl_socket_ops;
+    ret = socket_lib_init();
 
-#endif /* __SSL_SOCKET_H__ */
+    if (ret == -1)
+	return -1;
+
+#if defined(HAVE_OPENSSL)
+    ret = ssl_socket_lib_init();
+#endif
+
+    return ret;
+}
+
+void csocket_lib_fini(void)
+{
+    socket_lib_fini();
+
+#if defined(HAVE_OPENSSL)
+    ssl_socket_lib_fini();
+#endif
+}

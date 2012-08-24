@@ -10,9 +10,14 @@ AM_SILENT_RULES([yes])
 
 AC_PROG_CC
 AM_PROG_CC_C_O
-AC_CONFIG_HEADERS([config.h])
+AC_CONFIG_HEADERS([src/config.h])
 AM_PROG_AR
 LT_INIT
+
+# Set some sane default compiler flags
+CFLAGS="-Wall"
+CXXFLAGS="-Wall"
+EXTRA_DEFINES=
 
 platform_result=no
 

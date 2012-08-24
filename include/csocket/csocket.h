@@ -20,4 +20,7 @@
 #include "socket.h"
 #include "ssl_socket.h"
 
+int csocket_lib_init(void);
+void csocket_lib_fini(void);
+
 #endif /* __CSOCKET_H__ */

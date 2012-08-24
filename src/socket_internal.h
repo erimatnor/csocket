@@ -14,14 +14,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef __SSL_SOCKET_H__
-#define __SSL_SOCKET_H__
+#ifndef __SOCKET_INTERNAL_H__
+#define __SOCKET_INTERNAL_H__
 
-#include <openssl/ssl.h>
-#include "socket.h"
+#include <csocket/socket.h>
 
-struct ssl_socket;
+#define MAX_STRERROR_LEN 128
 
-extern const struct socket_ops ssl_socket_ops;
+struct socket {
+    int fd;
+    int flags;
+    int err;
+    char strerror[MAX_STRERROR_LEN];
+    enum socket_state state;
+    const struct socket_ops *ops;
+    void *private;
+};
 
-#endif /* __SSL_SOCKET_H__ */
+
+#endif /* __SOCKET_INTERNAL_H__ */

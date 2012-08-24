@@ -14,7 +14,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#include <csocket/ssl_socket.h>
+#include <csocket/csocket.h>
+#include <unistd.h>
 #include <stdio.h>
 #include <errno.h>
 
@@ -24,25 +25,25 @@ int main(int argc, char **argv)
     const char *service = "localhost:80";
     int ret;
 
-    socket_lib_init();
+    csocket_lib_init();
 
     s = socket_create(&ssl_socket_ops);
     //s = socket_create(&inet_stream_socket_ops);
 
     if (!s) {
-	fprintf(stderr, "could not create socket\n");
-	return -1;
+        fprintf(stderr, "could not create socket\n");
+        return -1;
     }
     if (argc > 1)
-	service = argv[1];
+        service = argv[1];
     
     ret = socket_connect_service(s, service); 
     
     if (ret == -1) {
-	fprintf(stderr, "failed to connect to %s: %s\n",
-		service, strerror(errno));
+        fprintf(stderr, "failed to connect to %s: %s\n",
+                service, strerror(errno));
     } else {
-	printf("connected to service %s\n", service);
+        printf("connected to service %s\n", service);
     } 
 
     sleep(3);
@@ -50,7 +51,7 @@ int main(int argc, char **argv)
     socket_close(s);
     socket_free(s);
 
-    socket_lib_fini();
+    csocket_lib_fini();
 
     return 0;
 }
